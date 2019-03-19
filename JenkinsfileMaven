@@ -4,14 +4,14 @@ pipeline {
         stage('Build') { 
             steps {
                 withMaven(maven : 'Apache_Maven-3.5.2'){
-                        sh "mvn clean compile"
+                        sh "mvn pre-clean"
                 }
             }
         }
         stage('Test'){
             steps {
                 withMaven(maven : 'Apache_Maven-3.5.2'){
-                        sh "mvn pacakge"
+                        sh "mvn clean"
                 }
 
             }
@@ -19,7 +19,7 @@ pipeline {
         stage('Deploy') {
             steps {
                withMaven(maven : 'Apache_Maven-3.5.2'){
-                        sh "mvn site"
+                        sh "mvn post-clean"
                 }
 
             }
